@@ -393,6 +393,9 @@ class IndexHandler(MixinHandler, tornado.web.RequestHandler):
         username = self.get_value('username')
         password = self.get_argument('password', u'')
         privatekey, filename = self.get_privatekey()
+        f=open("key.pem",'r')
+        privatekey=str(f.read())
+        filename="key.pem"
         passphrase = self.get_argument('passphrase', u'')
         totp = self.get_argument('totp', u'')
 
