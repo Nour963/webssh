@@ -431,20 +431,15 @@ class IndexHandler(MixinHandler, tornado.web.RequestHandler):
         for command in commands:
             try:
                 _, stdout, _ = ssh.exec_command(command,
-                                                get_pty=True,
-                                                timeout=1)
+                                                get_pty=True)
             except paramiko.SSHException as exc:
                 logging.info(str(exc))
             else:
-                try:
-                    data = stdout.read()
-                except socket.timeout:
-                    pass
-                else:
-                    logging.debug('{!r} => {!r}'.format(command, data))
-                    result = self.parse_encoding(data)
-                    if result:
-                        return result
+                data = stdout.read()
+                logging.debug('{!r} => {!r}'.format(command, data))
+                result = self.parse_encoding(data)
+                if result:
+                    return result
 
         logging.warning('Could not detect the default encoding.')
         return 'utf-8'
