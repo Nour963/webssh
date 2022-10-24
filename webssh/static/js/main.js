@@ -638,7 +638,7 @@ jQuery(function($){
 
     if (!errors.length || debug) {
       result.valid = true;
-      result.title = username + '@' + hostname + ':'  + port;
+      result.title = 'Terminal';
     }
     result.errors = errors;
 
