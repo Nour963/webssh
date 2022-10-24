@@ -531,6 +531,8 @@ jQuery(function($){
       update_font_family(term);
       term.focus();
       state = CONNECTED;
+      //add keepalive  for the session timeout (default 5min)
+      setInterval(function(){if (sock != null){sock.send("heartbeat");} }, 60000);
       title_element.text = url_opts_data.title || default_title;
       if (url_opts_data.command) {
         setTimeout(function () {
