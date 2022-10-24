@@ -563,6 +563,9 @@ jQuery(function($){
       state = DISCONNECTED;
       default_title = 'WebSSH';
       title_element.text = default_title;
+      if (e.reason == "Web Socket authentication failed"){
+        throw new Error("Web Socket auhentication failed");
+       }
     };
 
     $(window).resize(function(){
