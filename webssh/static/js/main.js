@@ -555,6 +555,11 @@ jQuery(function($){
       sock = undefined;
       reset_wssh();
       log_status(e.reason, true);
+      message="Your session has expired";
+      if (e.reason == "Web Socket authentication failed"){
+       message="Something Went Wrong";
+      }
+      document.querySelector('body').innerHTML='<div style="width: 50%;height: 200px; margin: 100px auto; "><img style="cursor: pointer;width: 100px;height: 100px; margin: 10px auto; display: block;" src="./static/img/icons8-refresh-100-gris.png" alt="" onclick="javascript:window.location.href=window.location.href"><p style=\'text-align: center; font-size: large;   font-family: Nunito,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";  \'> <span >'+message+' </span> <br> Please reload to continue </p><button type="button"  class="btn btn-primary " style="display: block;text-align:center;margin: auto;background: #fff;border: 1px solid #32b39e;color: #32b39e;" onclick="javascript:window.location.href=window.location.href"  >  Reload </a></button></div>'
       state = DISCONNECTED;
       default_title = 'WebSSH';
       title_element.text = default_title;
